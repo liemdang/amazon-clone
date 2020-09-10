@@ -24,7 +24,10 @@
   align-items: center;
   border-radius: 24px;
 }
-
+.header__searchInput {
+  flex: auto;
+  height: 24px;
+}
 .header__searchIcon {
   padding: 5px;
   height: 22px !important;
