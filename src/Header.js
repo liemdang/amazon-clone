@@ -14,6 +14,12 @@ function Header() {
       auth.signOut();
     }
   };
+  let klasse = "";
+  const handleChange = (e) => {
+    alert("hallo");
+    console.log(e);
+    klasse = "test";
+  };
   return (
     <div className="header">
       <Link to="/">
@@ -31,7 +37,9 @@ function Header() {
       <div className="header__nav">
         <Link to={!user && "/login"}>
           <div onClick={handleAuthentification} className="header__option">
-            <span className="header__optionLineOne">Hallo Sonny</span>
+            <span className="header__optionLineOne">
+              Hallo, {!user ? "Guest" : user.email}
+            </span>
             <span className="header__optionLineTwo">
               {user ? "Sign Out" : "Sign In"}
             </span>
@@ -48,8 +56,11 @@ function Header() {
       </div>
       <Link to="/checkout">
         <div className="header__optionBasket">
-          <ShoppingBasketIcon />
-          <span className="header__optionLineTwo header__basketCount">
+          <ShoppingBasketIcon className={klasse} />
+          <span
+            onChange={handleChange}
+            className="header__optionLineTwo header__basketCount"
+          >
             {basket?.length}
           </span>
         </div>

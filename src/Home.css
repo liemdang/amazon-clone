@@ -18,3 +18,8 @@
   margin-bottom: -150px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
+
+.shoppingBasket {
+  animation: shake 1s;
+  animation-iteration-count: infinite;
+}
