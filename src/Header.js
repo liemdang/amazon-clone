@@ -14,12 +14,7 @@ function Header() {
       auth.signOut();
     }
   };
-  let klasse = "";
-  const handleChange = (e) => {
-    alert("hallo");
-    console.log(e);
-    klasse = "test";
-  };
+
   return (
     <div className="header">
       <Link to="/">
@@ -56,9 +51,8 @@ function Header() {
       </div>
       <Link to="/checkout">
         <div className="header__optionBasket">
-          <ShoppingBasketIcon className={klasse} />
+          <ShoppingBasketIcon />
           <span
-            onChange={handleChange}
             className="header__optionLineTwo header__basketCount"
           >
             {basket?.length}

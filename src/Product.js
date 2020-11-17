@@ -1,6 +1,8 @@
 import React from "react";
 import "./Product.css";
 import { useStateValue } from "./StateProvider";
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 function Product({ id, title, rating, image, price }) {
   const [{ basket }, dispatch] = useStateValue();
@@ -16,6 +18,13 @@ function Product({ id, title, rating, image, price }) {
       },
     });
   };
+  function showStars(num){
+    let ratingStars =  Array(num).fill().map((_,i) => (<StarIcon style={{ color: "#FFD700" }}/>))
+     for( var i = ratingStars.length; i < 5; i++) {
+      ratingStars.push(<StarBorderIcon style={{ color: "#FFD700" }}/>)  
+ }    
+ return ratingStars
+ }
   return (
     <div className="product">
       <div className="product__info">
@@ -24,11 +33,7 @@ function Product({ id, title, rating, image, price }) {
         <small>$</small>
         <strong>{price}</strong>
         <div className="product__rating">
-          {Array(rating)
-            .fill()
-            .map((_, i) => (
-              <p>⭐</p>
-            ))}
+          {showStars(Array(rating).length)}
         </div>
       </div>
       <img src={image} alt="" />
