@@ -3,6 +3,7 @@ import "./Product.css";
 import { useStateValue } from "./StateProvider";
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 function Product({ id, title, rating, image, price }) {
   const [{ basket }, dispatch] = useStateValue();
@@ -19,9 +20,16 @@ function Product({ id, title, rating, image, price }) {
     });
   };
   function showStars(num){
-    let ratingStars =  Array(num).fill().map((_,i) => (<StarIcon style={{ color: "#FFD700" }}/>))
-     for( var i = ratingStars.length; i < 5; i++) {
-      ratingStars.push(<StarBorderIcon style={{ color: "#FFD700" }}/>)  
+    let floorNum = Math.floor(num);
+    let ratingStars =  Array(floorNum).fill().map((_,i) => (<StarIcon style={{ color: "#ffa41c" }}/>))
+    if( num > floorNum + 0.7 ) {
+      ratingStars.push(<StarIcon style={{ color: "#ffa41c" }}/>)
+    }
+    if( num >= floorNum + 0.3 && num <= floorNum + 0.7 ) {
+      ratingStars.push(<StarHalfIcon style={{ color: "#ffa41c" }}/>)
+    }
+     for( var i = ratingStars.length; i < 5; i++ ) {
+      ratingStars.push(<StarBorderIcon style={{ color: "#ffa41c" }}/>)  
  }    
  return ratingStars
  }
@@ -33,7 +41,8 @@ function Product({ id, title, rating, image, price }) {
         <small>$</small>
         <strong>{price}</strong>
         <div className="product__rating">
-          {showStars(Array(rating).length)}
+          {showStars(rating)}
+  <span class="tooltiptext">{rating} out of 5 stars</span>
         </div>
       </div>
       <img src={image} alt="" />
